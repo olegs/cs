@@ -26,6 +26,10 @@ print("Analyzing exponention distribution sampling")
 exp_sample <- rexp(100, rate=0.5)
 analyze(exp_sample)
 
-hist(norm_sample, exp_sample, main = "Histogram for normal and exponential", breaks=10, col="pink")
+h1 <- hist(norm_sample, breaks=10)
+h2 <- hist(exp_sample, breaks=10)
+plot(h2, col=rgb(0,0,1,1/4))
+plot(h1, col=rgb(0,1,0,1/4), add = TRUE)
+
 boxplot(norm_sample, exp_sample, main = "Boxplot for normal and exponential", names = c("Normal", "Exp"))
 
