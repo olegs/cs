@@ -23,9 +23,11 @@ print("Analyzing sum")
 analyze(sum)
 
 h1 <- hist(sum, col="green")
+# Add lines
 lines(h1$counts ~ h1$mids, col="red")
-
+# Add data values
 rug(sum)
-str(sum)
+
+# Summary
 h1$density
-c(0, cumsum(frequency(sum)))
+c(0, cumsum(freq)
