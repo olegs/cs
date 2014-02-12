@@ -30,4 +30,5 @@ rug(sum)
 
 # Summary
 h1$density
-c(0, cumsum(freq)
+
+hist(c(0, cumsum(sum), col="red", main="Cummulative sums")
