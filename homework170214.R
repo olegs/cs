@@ -1,4 +1,5 @@
 library("ggplot2")
+library("gridExtra")
 
 analyze <- function(sample, name) {
   print(sprintf("Summary on %s", name))
@@ -15,10 +16,11 @@ analyze(data$thirsday, "thirsday")
 analyze(data$friday, "friday")
 
 
-ggplot(data) + geom_histogram(aes(x = thirsday))
-ggplot(data) + geom_histogram(aes(x = friday))
-
-ggplot(data) + 
+p1 <- ggplot(data) + geom_histogram(aes(x = thirsday)) + geom_rug(aes(x=thirsday)) 
+p2 <- ggplot(data) + geom_histogram(aes(x = friday)) + geom_rug(aes(x = friday))
+p3 <- ggplot(data) + 
   geom_histogram(aes(x = thirsday), alpha=0.5, fill="green") + 
   geom_histogram(aes(x=friday), alpha=0.5, fill="red") + 
   labs(title = "Histograms") + labs(xlab = "Thirsday and Friday")
+
+grid.arrange(p1, p2, p3, ncol=1)
