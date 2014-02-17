@@ -26,8 +26,7 @@ pb <- function(data, col) {
 }
 
 ph <- function(data, col) {
-  return(ggplot(data, aes_string(x=col)) + geom_histogram() + geom_rug() + geom_freqpoly() + xlab(NULL) + 
-           theme(axis.text.x=element_blank(), axis.ticks=element_blank()) + 
+  return(ggplot(data, aes_string(x=col)) + geom_histogram() + geom_rug() + geom_freqpoly() +
            facet_grid(~school))
 }
 
