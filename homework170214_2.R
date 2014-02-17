@@ -19,18 +19,31 @@ univ_data <- univ_data[, 2:ncol(univ_data)]
 summary(univ_data)
 print(colSums(univ_data))
 
-p <- function(data, col) {
-  return(ggplot(data) + geom_boxplot(aes_string(x=col, y=col)) + facet_grid(~school))
+pb <- function(data, col) {
+  return(ggplot(data) + geom_boxplot(aes_string(x=0, y=col)) + xlab(NULL) + 
+           theme(axis.text.x=element_blank(), axis.ticks=element_blank()) + 
+           facet_grid(~school))
 }
 
-p(data, "sat")
-p(data, "acceptance")
+ph <- function(data, col) {
+  return(ggplot(data, aes_string(x=col)) + geom_histogram() + geom_rug() + geom_freqpoly() + xlab(NULL) + 
+           theme(axis.text.x=element_blank(), axis.ticks=element_blank()) + 
+           facet_grid(~school))
+}
 
-grid.arrange(p(data, "sat"), 
-             p(data, "acceptance"), 
-             p(data, "students"), 
-             p(data, "top"), 
-             p(data, "phd"), 
-             p(data, "grad"), ncol=2)
+
+grid.arrange(pb(data, "sat"), 
+             pb(data, "acceptance"), 
+             pb(data, "students"), 
+             pb(data, "top"), 
+             pb(data, "phd"), 
+             pb(data, "grad"), ncol=2)
+
+grid.arrange(ph(data, "sat"), 
+             ph(data, "acceptance"), 
+             ph(data, "students"), 
+             ph(data, "top"), 
+             ph(data, "phd"), 
+             ph(data, "grad"), ncol=2)
 
 # ggplot(melt(data), aes(x=variable, y=value)) + geom_boxplot(aes(fill=variable)) + facet_grid(~school)
