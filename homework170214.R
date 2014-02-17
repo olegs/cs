@@ -1,5 +1,6 @@
 library("ggplot2")
 library("gridExtra")
+library("reshape2")
 
 analyze <- function(sample, name) {
   print(sprintf("Summary on %s", name))
@@ -15,12 +16,14 @@ colnames(data) <- c("type", "month", "thirsday", "friday", "shop")
 analyze(data$thirsday, "thirsday")
 analyze(data$friday, "friday")
 
+p1 <- ggplot(melt(data[, c("thirsday", "friday")])) + geom_boxplot(aes(x=variable, y=value)) + xlab("day") + ylab("purchases")
 
-p1 <- ggplot(data, aes(x=thirsday)) + geom_histogram() + geom_rug() + geom_freqpoly()
-p2 <- ggplot(data, aes(x=friday)) + geom_histogram() + geom_rug() + geom_freqpoly()
-p3 <- ggplot(data) + 
+p2 <- ggplot(data, aes(x=thirsday)) + geom_histogram() + geom_rug() + geom_freqpoly()
+p3 <- ggplot(data, aes(x=friday)) + geom_histogram() + geom_rug() + geom_freqpoly()
+p4 <- ggplot(data) + 
   geom_histogram(aes(x = thirsday), alpha=0.5, fill="green") + geom_freqpoly(aes(x = thirsday), color="green") + 
   geom_histogram(aes(x=friday), alpha=0.5, fill="red") + geom_freqpoly(aes(x = friday), color="red") + 
   labs(title = "Histograms") + labs(xlab = "Thirsday and Friday")
 
-grid.arrange(p1, p2, p3, ncol=1)
+
+grid.arrange(p1, p2, p3, p4, ncol=2)
