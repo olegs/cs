@@ -1,4 +1,5 @@
 library("ggplot2")
+library("gridExtra")
 library("reshape2")
 
 data <- read.table("schools.csv", sep="\t")
