@@ -12,7 +12,7 @@ sample_mm <- function(n) {
     data[i,2] <- mean(sample)
   }  
   df <- data.frame(data)
-  colnames(df) <- c(sprintf("median%d", n), sprintf("sample%d", n))
+  colnames(df) <- c(sprintf("median%d", n), sprintf("mean%d", n))
   return(df)
 }
 
