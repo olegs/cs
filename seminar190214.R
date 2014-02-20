@@ -27,7 +27,8 @@ analyze_sample <- function(n, sd_biased, sd_corrected) {
   plot(ggplot(melt(df)) + geom_density(aes(x=value, color=variable)) + 
       stat_function(fun=dnorm, args=list(mean=MEAN, sd=SD), color="red") +
       stat_function(fun=dnorm, args=list(mean=MEAN, sd=sqrt(sd_biased)), color="green") +
-      stat_function(fun=dnorm, args=list(mean=MEAN, sd=sqrt(sd_corrected)), color="blue") + 
+      stat_function(fun=dnorm, args=list(mean=MEAN, sd=sqrt(sd_corrected)), color="blue") +
+      xlim(MEAN - SD, MEAN + SD) + 
       xlab(NULL) + ylab(NULL) + labs(title=sprintf("Normal distribution %d samples", n)))
 }
 
