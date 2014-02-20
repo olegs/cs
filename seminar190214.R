@@ -1,5 +1,4 @@
 library("ggplot2")
-library("gridExtra")
 library("reshape2")
 
 MEAN <- 7
